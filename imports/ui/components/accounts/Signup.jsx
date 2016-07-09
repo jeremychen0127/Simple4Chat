@@ -3,6 +3,8 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import { FlowRouter } from 'meteor/kadira:flow-router';
+
 const styles = {
   inputField: {
     fontSize: '16px',
@@ -47,6 +49,7 @@ export default class Signup extends Component {
     this.handleSignUp = () => {
       Accounts.createUser({username: this.state.username, password: this.state.password});
       this.setState({username: '', password: '', passwordAgain: ''});
+      FlowRouter.go("/chat-room");
     }
   }
 
