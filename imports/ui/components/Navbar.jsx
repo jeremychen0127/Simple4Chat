@@ -100,8 +100,15 @@ class Navbar extends Component {
                 </i>
               </li>
               <li style={{marginTop: '10px'}}><a id="logo" href="/" style={{fontSize: '25px'}}>Simple 4 Chat</a></li>
-              <li className="right"><a href="/login">Log In</a></li>
-              <li className="right"><a href="/signup">Sign Up</a></li>
+              {
+                !this.props.loggedInUser ?
+                  <div>
+                    <li className="right"><a href="/login">Log In</a></li>
+                    <li className="right"><a href="/signup">Sign Up</a></li>
+                  </div>
+                :
+                  ''
+              }
             </div>
 
             <div className="hide-on-small-and-down">
@@ -113,8 +120,15 @@ class Navbar extends Component {
                 </i>
               </li>
               <li><a id="logo" href="/" style={{fontSize: '20px'}}>Simple 4 Chat</a></li>
-              <li className="right"><a href="/login">Log In</a></li>
-              <li className="right"><a href="/signup">Sign Up</a></li>
+              {
+                !this.props.loggedInUser ?
+                  <div>
+                    <li className="right"><a href="/login">Log In</a></li>
+                    <li className="right"><a href="/signup">Sign Up</a></li>
+                  </div>
+                  :
+                  ''
+              }
             </div>
           </div>
         </ul>
