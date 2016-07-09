@@ -10,6 +10,8 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
 
+import OpenRoomDialog from './chat-room/OpenRoomDialog';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -49,12 +51,12 @@ class Navbar extends Component {
     this.handleLeftNavToggle = (event) => {
       event.preventDefault();
       this.setState({leftNavOpen: !this.state.leftNavOpen});
-    }
+    };
 
     this.handleLogout = () => {
       Meteor.logout(() => {});
       FlowRouter.go(FlowRouter.path("login"));
-    }
+    };
   }
 
   getChildContext() {
@@ -107,7 +109,9 @@ class Navbar extends Component {
                     <li className="right"><a href="/signup">Sign Up</a></li>
                   </div>
                 :
-                  ''
+                  <li className="right" style={{cursor: 'pointer'}}>
+                    <OpenRoomDialog />
+                  </li>
               }
             </div>
 
@@ -127,7 +131,9 @@ class Navbar extends Component {
                     <li className="right"><a href="/signup">Sign Up</a></li>
                   </div>
                   :
-                  ''
+                  <li className="right" style={{cursor: 'pointer'}}>
+                    <OpenRoomDialog />
+                  </li>
               }
             </div>
           </div>

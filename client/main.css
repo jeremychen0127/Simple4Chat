@@ -66,3 +66,12 @@ li a#logo:hover {
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
 }
+
+.input-label {
+    font-size: 14px;
+    color: #a3832d;
+}
+
+#userSearch input[type=text]:focus {
+    box-shadow: none;
+}
