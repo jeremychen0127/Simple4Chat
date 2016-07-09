@@ -7,9 +7,6 @@ const styles = {
   inputField: {
     fontSize: '16px',
   },
-  inputDiv: {
-    paddingRight: '30px',
-  }
 };
 
 export default class Login extends Component {
@@ -43,13 +40,13 @@ export default class Login extends Component {
           <br /><br />
           <form>
             <div className="row">
-              <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field" style={styles.inputDiv}>
+              <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field">
                 <input value={this.state.username} onChange={this.handleUsernameChange}
                        id="username" type="text" placeholder="Your UserName" className="validate" style={styles.inputField}/>
               </div>
             </div>
             <div className="row">
-              <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field" style={styles.inputDiv}>
+              <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field">
                 <input value={this.state.password} onChange={this.handlePasswordChange}
                        id="password" type="password" placeholder="Your Password" className="validate" style={styles.inputField}/>
               </div>
