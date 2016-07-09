@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "material-ui": "^0.15.1",
+    "materialize-css": "^0.97.6",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.2.0",
     "react-addons-pure-render-mixin": "^15.2.0",
