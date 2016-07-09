@@ -38,7 +38,7 @@ const styles = {
   }
 };
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
 
@@ -61,6 +61,10 @@ export default class Navbar extends Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({leftNavOpen: false});
+  }
+
   renderLeftNav() {
     return (
       <div >
@@ -68,14 +72,14 @@ export default class Navbar extends Component {
                 onRequestChange={(open, reason) => { this.setState({leftNavOpen:open}) }}
                 width={200} style={{zIndex:9999}}>
 
-          <MenuItem style={styles.leftNavMenuItem} linkButton={true} href="/profile" primaryText="Log Out"
+          <MenuItem style={styles.leftNavMenuItem} onTouchTap={this.handleLogout} primaryText="Log Out"
                     leftIcon={<FontIcon style={styles.leftNavMenuItemIcon} className="material-icons">exit_to_app</FontIcon>}/>
         </Drawer>
 
         <Drawer open={this.state.leftNavOpen} docked={false} className="hide-on-med-and-up"
                 onRequestChange={(open, reason) => { this.setState({leftNavOpen:open}) }}
                 width={250} style={{zIndex:9999}}>
-          <MenuItem style={styles.leftNavMenuItemMobile} linkButton={true} href="/profile" primaryText="Log Out"
+          <MenuItem style={styles.leftNavMenuItemMobile} onTouchTap={this.handleLogout} primaryText="Log Out"
                     leftIcon={<FontIcon style={styles.leftNavMenuItemMobileIcon} className="material-icons">exit_to_app</FontIcon>}/>
         </Drawer>
       </div>
@@ -119,3 +123,7 @@ export default class Navbar extends Component {
 Navbar.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired
 };
+
+export default createContainer(() => {
+  return { loggedInUser: Meteor.user() }
+}, Navbar);
