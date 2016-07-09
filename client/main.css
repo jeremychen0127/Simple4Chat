@@ -47,3 +47,22 @@ li a#logo:hover {
 .navbar li a:hover {
     background-color: #b0bec5;
 }
+
+/* login */
+/* label underline focus color */
+.input-field input[type=text]:focus, .input-field input[type=password]:focus {
+    border-bottom: 1px solid #a3832d;
+    box-shadow: 0 1px 0 0 #a3832d;
+}
+
+/* valid color */
+.input-field input[type=text].valid, .input-field input[type=password].valid {
+    border-bottom: 1px solid #a3832d;
+    box-shadow: 0 1px 0 0 #a3832d;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+}
