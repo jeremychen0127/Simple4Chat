@@ -85,7 +85,7 @@ export default class Signup extends Component {
           </div>
           <div className="row">
             <div className="center">
-              <RaisedButton onClick={this.handleSignUp} label="Sign Up" backgroundColor="#ffe0b2"
+              <RaisedButton onClick={this.handleSignUp} label="Register & Start Chatting" backgroundColor="#ffe0b2"
                             disabled={!this.state.isPasswordVerified || !this.state.isUsernameValid || !this.state.username} />
             </div>
           </div>
