@@ -16,8 +16,19 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.handleLogin = (username, password) => {
-      Accounts.createUser({username: username, password: password});
+    this.state = {
+      username: '',
+      password: '',
+      isCredentialWrong: false,
+    };
+
+    this.handleUsernameChange = (event) => this.setState({username: event.currentTarget.value, isCredentialWrong: false});
+    this.handlePasswordChange = (event) => this.setState({password: event.currentTarget.value, isCredentialWrong: false});
+
+    this.handleLogIn = () => {
+      Meteor.loginWithPassword(this.state.username, this.state.password, (Error) => {
+        this.setState({isCredentialWrong: true, username: '', password: ''});
+      });
     }
   }
 
@@ -33,17 +44,29 @@ export default class Login extends Component {
           <form>
             <div className="row">
               <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field" style={styles.inputDiv}>
-                <input id="username" type="text" placeholder="Your UserName" className="validate" style={styles.inputField}/>
+                <input value={this.state.username} onChange={this.handleUsernameChange}
+                       id="username" type="text" placeholder="Your UserName" className="validate" style={styles.inputField}/>
               </div>
             </div>
             <div className="row">
               <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field" style={styles.inputDiv}>
-                <input id="password" type="password" placeholder="Your Password" className="validate" style={styles.inputField}/>
+                <input value={this.state.password} onChange={this.handlePasswordChange}
+                       id="password" type="password" placeholder="Your Password" className="validate" style={styles.inputField}/>
               </div>
             </div>
             <div className="row">
+              {
+                this.state.isCredentialWrong ?
+                  <div className="center">
+                    <div style={{color: 'red'}}>Username and/or Password is not correct</div>
+                  </div>
+                :
+                  ''
+              }
+              <br />
               <div className="center">
-                <RaisedButton label="Log In" backgroundColor="#ffe0b2"/>
+                <RaisedButton onClick={this.handleLogIn} label="Log In" backgroundColor="#ffe0b2"
+                              disabled={!this.state.username || !this.state.password} />
               </div>
             </div>
           </form>
