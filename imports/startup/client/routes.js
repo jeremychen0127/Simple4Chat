@@ -5,6 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Layout } from '../../ui/layouts/Layout';
 import Welcome from '../../ui/pages/Welcome';
 import Login from '../../ui/components/accounts/Login';
+import Signup from '../../ui/components/accounts/Signup';
 import ChatRoom from '../../ui/pages/ChatRoom';
 
 FlowRouter.route('/', {
@@ -22,6 +23,13 @@ FlowRouter.route('/login', {
   name: 'login',
   action() {
     mount(Layout, {content: <Login />});
+  }
+});
+
+FlowRouter.route('/signup', {
+  name: 'signup',
+  action() {
+    mount(Layout, {content: <Signup />});
   }
 });
 

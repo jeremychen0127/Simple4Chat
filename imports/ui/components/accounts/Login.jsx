@@ -16,7 +16,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSignUp = (username, password) => {
+    this.handleLogin = (username, password) => {
       Accounts.createUser({username: username, password: password});
     }
   }
@@ -42,13 +42,8 @@ export default class Login extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field" style={styles.inputDiv}>
-                <input id="password" type="password" placeholder="Re-enter Your Password" className="validate" style={styles.inputField}/>
-              </div>
-            </div>
-            <div className="row">
               <div className="center">
-                <RaisedButton label="Sign Up" backgroundColor="#ffe0b2"/>
+                <RaisedButton label="Log In" backgroundColor="#ffe0b2"/>
               </div>
             </div>
           </form>
