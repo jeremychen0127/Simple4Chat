@@ -22,3 +22,4 @@ kadira:flow-router
 materialize:materialize
 accounts-ui
 accounts-google
+accounts-password
