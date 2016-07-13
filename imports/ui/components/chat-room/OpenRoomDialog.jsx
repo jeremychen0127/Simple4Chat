@@ -21,7 +21,7 @@ class OpenRoomDialog extends Component {
     this.state = {
       open: false,
       roomName: 'New Chat 1',
-      usernameInput: 'hgi',
+      usernameInput: '',
       friends: [],
     };
 
@@ -44,12 +44,27 @@ class OpenRoomDialog extends Component {
     this.handleInputChange = (searchText, dataSource) => {
       this.setState({usernameInput: searchText});
     };
+
+    this.onDeleteClicked = (event) => {
+      let id = event.target.id.replace("f_","");
+      let friends = _.reject(this.state.friends, (friend) => {return friend._id === id});
+      this.setState({friends: friends});
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.usernameInput === "") {
+      $('#add-friends').val('');
+    }
   }
 
   renderAddedFriends() {
     return this.state.friends.map((friend) => {
       return (
-        <div>{friend.username}</div>
+        <div className="friend-chip" key={friend._id}>
+          {friend.username}
+          <i className="material-icons " onClick={this.onDeleteClicked} id={"f_" + friend._id}>close</i>
+        </div>
       );
     });
   }
@@ -86,16 +101,33 @@ class OpenRoomDialog extends Component {
                        id="roomName" type="text" placeholder="New Room" className="validate" style={styles.inputField}/>
               </div>
             </div>
-            {this.renderAddedFriends()}
+
+            {
+              this.state.friends.length > 0 ?
+                <div className="row">
+                  <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field">
+                    {this.renderAddedFriends()}
+                  </div>
+                </div>
+              :
+                ''
+            }
+
             <div className="row">
-              <div id="userSearch" className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field">
+              <div className="col offset-s1 s1 offset-m3 m1 offset-l4 l1">
+                <div className="right" style={{marginTop: '25px'}}>
+                  <i className="material-icons">search</i>
+                </div>
+              </div>
+              <div id="userSearch" className="col s10 m6 l4 input-field">
                 <AutoComplete
-                  floatingLabelText="Type username to add friends..."
+                  id="add-friends"
+                  placeholder="Type username to find friends..."
                   filter={AutoComplete.caseInsensitiveFilter}
                   onNewRequest={this.handleUserSelect}
-                  searchText={this.state.usernameInput}
                   onUpdateInput={this.handleInputChange}
-                  dataSource={this.props.usernames}
+                  dataSource={this.state.usernameInput.length > 1 ? this.props.usernames : []}
+                  openOnFocus={true}
                 />
               </div>
             </div>
