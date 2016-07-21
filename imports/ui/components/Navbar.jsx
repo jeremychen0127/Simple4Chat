@@ -11,6 +11,7 @@ import FontIcon from 'material-ui/FontIcon';
 import MenuItem from 'material-ui/MenuItem';
 
 import OpenRoomDialog from './chat-room/OpenRoomDialog';
+import ChatRoomList from './chat-room/ChatRoomList';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -109,9 +110,14 @@ class Navbar extends Component {
                     <li className="right"><a href="/signup">Sign Up</a></li>
                   </div>
                 :
-                  <li className="right" style={{cursor: 'pointer'}}>
-                    <OpenRoomDialog />
-                  </li>
+                  <div>
+                    <li className="right" style={{cursor: 'pointer'}}>
+                      <OpenRoomDialog />
+                    </li>
+                    <li className="right" style={{cursor: 'pointer'}}>
+                      <ChatRoomList />
+                    </li>
+                  </div>
               }
             </div>
 
@@ -130,10 +136,15 @@ class Navbar extends Component {
                     <li className="right"><a href="/login">Log In</a></li>
                     <li className="right"><a href="/signup">Sign Up</a></li>
                   </div>
-                  :
-                  <li className="right" style={{cursor: 'pointer'}}>
-                    <OpenRoomDialog />
-                  </li>
+                :
+                  <div>
+                    <li className="right" style={{cursor: 'pointer'}}>
+                      <OpenRoomDialog />
+                    </li>
+                    <li className="right" style={{cursor: 'pointer'}}>
+                      <ChatRoomList />
+                    </li>
+                  </div>
               }
             </div>
           </div>
