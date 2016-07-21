@@ -20,7 +20,7 @@ class OpenRoomDialog extends Component {
 
     this.state = {
       open: false,
-      roomName: 'New Chat 1',
+      roomName: 'New Chat Room',
       usernameInput: '',
       friends: [],
     };
@@ -49,6 +49,11 @@ class OpenRoomDialog extends Component {
       let id = event.target.id.replace("f_","");
       let friends = _.reject(this.state.friends, (friend) => {return friend._id === id});
       this.setState({friends: friends});
+    }
+
+    this.handleOpenRoom = () => {
+      Meteor.call("sim.chat_rooms.addChatRoom", this.state.roomName, this.state.friends);
+      this.setState({open: false, roomName: 'New Chat Room', usernameInput: '', friends: []});
     }
   }
 
@@ -80,7 +85,7 @@ class OpenRoomDialog extends Component {
         label="Open Room!"
         backgroundColor="#fff3e0"
         labelStyle={{color: '#a3832d'}}
-        onTouchTap={this.handleClose}
+        onTouchTap={this.handleOpenRoom}
       />,
     ];
 
