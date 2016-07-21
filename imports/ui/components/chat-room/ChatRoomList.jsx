@@ -6,6 +6,13 @@ import MenuItem from 'material-ui/MenuItem';
 
 import { ChatRoomsCollection } from '../../../api/chat_rooms';
 
+const styles = {
+  roomListItem: {
+    fontFamily: 'Patua One, cursive',
+    color: '#455a64',
+  },
+}
+
 class ChatRoomList extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +26,7 @@ class ChatRoomList extends Component {
 
   renderChatRoomList() {
     return this.props.rooms.map((room) => {
-      return <MenuItem key={room._id} primaryText={room.name} />;
+      return <MenuItem key={room._id} style={styles.roomListItem} primaryText={room.name} />;
     });
   }
 
@@ -27,7 +34,8 @@ class ChatRoomList extends Component {
     return (
       <div>
         <a onClick={this.handleOpenChange}>My Chat Rooms</a>
-        <Drawer width={200} openSecondary={true} open={this.state.open} containerStyle={{marginTop: '60px'}}>
+        <Drawer width={200} openSecondary={true} open={this.state.open}
+                containerStyle={{marginTop: '60px'}}>
           {this.renderChatRoomList()}
         </Drawer>
       </div>
