@@ -48,6 +48,7 @@ logging@1.0.13_1
 materialize:materialize@0.97.6
 meteor@1.1.15_1
 meteor-base@1.0.4
+meteorhacks:subs-manager@1.6.4
 minifier-css@1.1.12_1
 minifier-js@1.1.12_1
 minimongo@1.0.17
