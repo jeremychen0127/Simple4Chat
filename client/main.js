@@ -1,2 +1,4 @@
 import React from 'react';
 import '../imports/startup/client/routes.js'
+
+Subs = new SubsManager();
