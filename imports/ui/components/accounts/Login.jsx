@@ -42,7 +42,7 @@ export default class Login extends Component {
             <div className="row">
               <div className="col offset-s1 s10 offset-m3 m6 offset-l4 l4 input-field">
                 <input value={this.state.username} onChange={this.handleUsernameChange}
-                       id="username" type="text" placeholder="Your UserName" className="validate" style={styles.inputField}/>
+                       id="username" type="text" placeholder="Your User Name" className="validate" style={styles.inputField}/>
               </div>
             </div>
             <div className="row">
