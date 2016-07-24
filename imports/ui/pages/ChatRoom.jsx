@@ -37,6 +37,7 @@ class ChatRoom extends Component {
       return (
         <div>
           <MessageList />
+          <br />
           <div className="row">
             <div className="col offset-m3 m6">
               <form onSubmit={this.handleMessageSent}>
