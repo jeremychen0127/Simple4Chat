@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'underscore';
 import { createContainer } from 'meteor/react-meteor-data';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -26,7 +27,7 @@ class ChatRoom extends Component {
 
   handleMessageSent(event) {
     event.preventDefault();
-    let message = Factory.createMessage(this.props.friendIds, this.state.message);
+    let message = Factory.createMessage(this.props.receiverIds, this.state.message);
     Meteor.call("sim.messages.addMessage", message);
     this.setState({message: ''});
   }
@@ -66,9 +67,10 @@ export default createContainer((params) => {
   if (roomId) {
     let handle = Meteor.subscribe("sim.chat_rooms");
     if (handle.ready()) {
-      let friendIds = ChatRoomsCollection.findOne({_id: roomId}).friendIds;
+      let room = ChatRoomsCollection.findOne({_id: roomId});
+      let receiverIds = _.union(room.friendIds, [room.hostId]);
 
-      return {friendIds: friendIds};
+      return {receiverIds: receiverIds};
     }
 
     return {};
