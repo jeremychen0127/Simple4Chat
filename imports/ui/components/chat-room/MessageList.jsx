@@ -7,14 +7,20 @@ var Infinite = require('react-infinite');
 
 class MessageList extends Component {
   renderMessages() {
+    let noMargins = {marginTop: '0px', marginBottom: '0px'};
+
     return this.props.messages.map((message) => {
       if (message.senderId === Meteor.userId()) {
         return (
-          <div className="col offset-s6 s6 friend-chip">{message.content}</div>
+          <div className="row" style={noMargins}>
+            <div className="col offset-s6 s6 friend-chip">{message.content}</div>
+          </div>
         );
       } else {
         return (
-          <div className="col s6 friend-chip">{message.content}</div>
+          <div className="row" style={noMargins}>
+            <div className="col s6 friend-chip">{message.content}</div>
+          </div>
         );
       }
     });
@@ -22,7 +28,7 @@ class MessageList extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div>
         {this.renderMessages()}
       </div>
     );
