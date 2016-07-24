@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Drawer from 'material-ui/Drawer';
+import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
 import { ChatRoomsCollection } from '../../../api/chat_rooms';
@@ -22,11 +23,21 @@ class ChatRoomList extends Component {
     };
 
     this.handleOpenChange = () => this.setState({open: !this.state.open});
+
+    this.handleRoomChange = (event, value) => {
+      FlowRouter.setQueryParams({id: value});
+    }
   }
 
   renderChatRoomList() {
     return this.props.rooms.map((room) => {
-      return <MenuItem key={room._id} style={styles.roomListItem} primaryText={room.name} />;
+      return (
+        <MenuItem
+          key={room._id}
+          value={room._id}
+          style={styles.roomListItem}
+          primaryText={room.name} />
+      );
     });
   }
 
@@ -36,7 +47,9 @@ class ChatRoomList extends Component {
         <a onClick={this.handleOpenChange}>My Chat Rooms</a>
         <Drawer width={200} openSecondary={true} open={this.state.open}
                 containerStyle={{marginTop: '60px'}}>
-          {this.renderChatRoomList()}
+          <Menu onChange={this.handleRoomChange}>
+            {this.renderChatRoomList()}
+          </Menu>
         </Drawer>
       </div>
     );

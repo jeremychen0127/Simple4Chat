@@ -143,8 +143,12 @@ class OpenRoomDialog extends Component {
 }
 
 export default createContainer(() => {
-  let usernames = Meteor.users.find({}, {fields: {username: 1}}).fetch().map((user) => {
-    return user.username;
-  });
-  return { usernames: usernames};
+  Subs.subscribe("userData");
+  if (Subs.ready()) {
+    let usernames = Meteor.users.find({}, {fields: {username: 1}}).fetch().map((user) => {
+      return user.username;
+    });
+    return {usernames: usernames};
+  }
+  return {usernames: []};
 }, OpenRoomDialog);
