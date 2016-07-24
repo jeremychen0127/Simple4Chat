@@ -6,6 +6,6 @@ export default {
       senderId: Meteor.userId(),
       receiverIds: receiverIds,
       content: content,
-    }
+    };
   }
 }

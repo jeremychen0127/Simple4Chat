@@ -35,8 +35,8 @@ FlowRouter.route('/signup', {
 
 FlowRouter.route('/chat-room', {
   name: 'chatRoom',
-  action() {
-    mount(Layout, {content: <ChatRoom />});
+  action(params, queryParams) {
+    mount(Layout, {content: <ChatRoom roomId={queryParams.id}/>});
   }
 });
 
