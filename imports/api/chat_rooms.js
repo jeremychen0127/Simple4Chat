@@ -5,7 +5,7 @@ export const ChatRoomsCollection = new Mongo.Collection("sim.chat_rooms");
 
 if (Meteor.isServer) {
   Meteor.publish("sim.chat_rooms", function () {
-    return ChatRoomsCollection.find({hostId: this.userId});
+    return ChatRoomsCollection.find({$or: [{hostId: this.userId}, {friendIds: this.userId}] });
   });
   
   Meteor.methods({
