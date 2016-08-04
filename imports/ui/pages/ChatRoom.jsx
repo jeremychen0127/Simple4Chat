@@ -25,6 +25,18 @@ class ChatRoom extends Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  componentDidMount() {
+    this.textareaResize();
+  }
+
+  componentDidUpdate() {
+    this.textareaResize();
+  }
+
+  textareaResize() {
+    autosize($('#messageInput'));
+  }
+
   handleMessageSent(event) {
     event.preventDefault();
     let message = Factory.createMessage(this.props.receiverIds, this.state.message);
@@ -35,15 +47,13 @@ class ChatRoom extends Component {
   render() {
     if (this.props.roomId) {
       return (
-        <div>
+        <div className="container">
           <MessageList />
           <br />
           <div className="row">
-            <div className="col offset-m3 m6">
-              <form onSubmit={this.handleMessageSent}>
-                <input value={this.state.message} onChange={this.handleMessageChange}
-                       id="message" type="text" placeholder="Type your message..." className="validate"/>
-              </form>
+            <div className="col offset-m2 m8">
+                <textarea value={this.state.message} rows={3} onChange={this.handleMessageChange}
+                          id="messageInput" placeholder="Type your message..."></textarea>
             </div>
           </div>
         </div>

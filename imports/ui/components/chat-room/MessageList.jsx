@@ -13,13 +13,13 @@ class MessageList extends Component {
       if (message.senderId === Meteor.userId()) {
         return (
           <div className="row" style={noMargins}>
-            <div className="col offset-s6 s6 friend-chip">{message.content}</div>
+            <div className="col offset-s8 s4 friend-chip">{message.content}</div>
           </div>
         );
       } else {
         return (
           <div className="row" style={noMargins}>
-            <div className="col s6 friend-chip">{message.content}</div>
+            <div className="col s4 friend-chip">{message.content}</div>
           </div>
         );
       }
