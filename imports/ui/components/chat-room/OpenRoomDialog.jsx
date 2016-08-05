@@ -49,7 +49,7 @@ class OpenRoomDialog extends Component {
       let id = event.target.id.replace("f_","");
       let friends = _.reject(this.state.friends, (friend) => {return friend._id === id});
       this.setState({friends: friends});
-    }
+    };
 
     this.handleOpenRoom = () => {
       Meteor.call("sim.chat_rooms.addChatRoom", this.state.roomName, this.state.friends);
@@ -145,7 +145,7 @@ class OpenRoomDialog extends Component {
 export default createContainer(() => {
   Subs.subscribe("userData");
   if (Subs.ready()) {
-    let usernames = Meteor.users.find({}, {fields: {username: 1}}).fetch().map((user) => {
+    let usernames = Meteor.users.find({_id: {$ne: Meteor.userId()}}, {fields: {username: 1}}).fetch().map((user) => {
       return user.username;
     });
     return {usernames: usernames};
